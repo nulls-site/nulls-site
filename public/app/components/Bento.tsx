@@ -1,10 +1,12 @@
 "use client";
 
 import CheckboxList from "./CheckboxList";
+import GithubCommitsWidget from "./widgets/GithubCommitsWidget";
+
 
 export default function Bento() {
   return (
-    <div className="grid grid-cols-3 auto-rows-[120px] gap-2">
+    <div className="grid grid-cols-3 auto-rows-[160px] gap-2">
       <div className="col-span-2 row-span-1 bg-[#3b3154] flex items-center justify-center not-last-of-type:p-5">
         <div className="text-center">
           <h2 className="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
@@ -63,19 +65,13 @@ export default function Bento() {
       </div>
 
       <div className="col-span-1 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
-        <div className="text-center">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
-            UNDER CONSTRUCTION
-          </h2>
-          <p className=" text-sm md:text-base text-neutral-400 leading-relaxed">
-            This section is not ready yet.
-            <br />
-            Something is forming in the dark.
-          </p>
-          <div className="text-xs text-red-900 tracking-wider uppercase">
-            Proceed with caution
-          </div>
-        </div>
+        <GithubCommitsWidget
+              user="nulls-site"
+              repo="nulls-site"
+              branch="main"
+              last={1}
+              limitMessageTo={100}
+            />
       </div>
 
       <div className="col-span-1 row-span-2 bg-[#3b3154] flex items-center justify-center p-5 text-sm">

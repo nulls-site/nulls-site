@@ -109,7 +109,7 @@ const NowPlaying: React.FC = () => {
             className="block now-playing-inner text-sm"
           >
             {coverImage && (
-              <div className="w-50 aspect-square overflow-hidden mb-2 border border-neutral-700">
+              <div className="w-50 aspect-square overflow-hidden mb-2">
                 <Image
                   src={coverImage}
                   alt={`${track.name} capa`}
