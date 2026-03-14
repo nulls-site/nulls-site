@@ -1,43 +1,17 @@
-import { useEffect, useState } from "react";
-
 type Props = {
-  user: string;
-  repo: string;
-  branch?: string;
-  last?: number;
-  limitMessageTo?: number;
+  commits: any[]; 
+  limitMessageTo?: number; 
 };
 
-export default function GitHubCommitsWidget({
-  user,
-  repo,
-  branch = "main",
-  last = 1,
-  limitMessageTo = 100,
+export default function GitHubCommitsWidget({ 
+  commits, 
+  limitMessageTo = 100 
 }: Props) {
-  const [commits, setCommits] = useState<any[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchCommits() {
-      try {
-        const res = await fetch(
-          `https://api.github.com/repos/${user}/${repo}/commits?sha=${branch}&per_page=${last}`
-        );
-        if (!res.ok) throw new Error("Failed to fetch commits");
-        const data = await res.json();
-        setCommits(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : String(err));
-      }
-    }
-    fetchCommits();
-  }, [user, repo, branch, last]);
-
-  if (error) {
+  
+  if (!commits?.length) {
     return (
-      <div className="rounded-md border border-neutral-300 bg-neutral-50 p-3 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
-        Unable to load commits
+      <div className="text-xs text-neutral-400">
+        Sem commits recentes
       </div>
     );
   }

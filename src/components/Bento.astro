@@ -1,11 +1,22 @@
 ---
 import CheckboxList from './react/CheckboxList.tsx';
 import GithubCommitsWidget from './react/GithubCommitsWidget.tsx';
+
+let commits = [];
+try {
+  const res = await fetch(
+    'https://api.github.com/repos/nulls-site/nulls-site/commits?sha=main&per_page=1'
+  );
+  if (res.ok) {
+    commits = await res.json();
+  }
+} catch (err) {
+  console.error('Erro ao buscar commits:', err);
+}
 ---
 
 <div class="grid grid-cols-3 auto-rows-[160px] gap-2">
   
-  <!-- Card grande -->
   <div class="col-span-2 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
     <div class="text-center">
       <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
@@ -21,7 +32,6 @@ import GithubCommitsWidget from './react/GithubCommitsWidget.tsx';
     </div>
   </div>
 
-  <!-- Card pequeno -->
   <div class="col-span-1 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
     <div class="text-center">
       <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
@@ -37,7 +47,6 @@ import GithubCommitsWidget from './react/GithubCommitsWidget.tsx';
     </div>
   </div>
 
-  <!-- Texto -->
   <div class="col-span-1 row-span-2 bg-[#3b3154] flex items-center justify-center p-5">
     <p class="text-sm leading-relaxed">
       This is my personal space on the internet. Here, I express myself
@@ -47,7 +56,6 @@ import GithubCommitsWidget from './react/GithubCommitsWidget.tsx';
     </p>
   </div>
 
-  <!-- Outro card -->
   <div class="col-span-2 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
     <div class="text-center">
       <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
@@ -63,19 +71,14 @@ import GithubCommitsWidget from './react/GithubCommitsWidget.tsx';
     </div>
   </div>
 
-  <!-- GitHub Widget (React Island) -->
   <div class="col-span-1 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
     <GithubCommitsWidget 
-      user="nulls-site" 
-      repo="nulls-site" 
-      branch="main" 
-      last={1} 
+      commits={commits} 
       limitMessageTo={100} 
       client:load 
     />
   </div>
 
-  <!-- Checkbox List (React Island) -->
   <div class="col-span-1 row-span-2 bg-[#3b3154] flex items-center justify-center p-5 text-sm">
     <CheckboxList 
       items={[
@@ -88,7 +91,6 @@ import GithubCommitsWidget from './react/GithubCommitsWidget.tsx';
     />
   </div>
 
-  <!-- Último card -->
   <div class="col-span-2 row-span-1 bg-[#3b3154] flex items-center justify-center text-center p-5">
     <div class="text-center">
       <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
