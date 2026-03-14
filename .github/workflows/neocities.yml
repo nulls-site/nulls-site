@@ -28,4 +28,4 @@ jobs:
         with:
           api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
           cleanup: false
-          dist_dir: out
+          dist_dir: src/pages

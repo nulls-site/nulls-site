@@ -1,45 +1,24 @@
-# Dependencies
-node_modules/
-.pnp/
-.pnp.js
-
-# Next.js build output
-.next/
+# build output
 dist/
 
-# Logs
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Environment variables
+# environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.production
 
-# OS / Editor files
+# macOS-specific files
 .DS_Store
-Thumbs.db
-*.swp
-*.swo
+
+# jetbrains setting folder
 .idea/
-.vscode/
-
-# TypeScript
-*.tsbuildinfo
-
-# Coverage
-coverage/
-
-# Turbo / Cache
-.turbo/
-.cache/
-
-# ESLint
-.eslintcache
-
-# Misc
-*.pem

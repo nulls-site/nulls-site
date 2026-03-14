@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Bento from '../components/Bento.astro';
+import NowPlaying from '../components/react/NowPlaying.tsx';
+---
+
+<Layout title="Home | Meu Site">
+  <div class="min-h-screen px-4 md:px-20 py-10 flex flex-col">
+    
+    <!-- Header -->
+    <header class="bg-[#3b3154] h-50 mb-5 p-5 flex items-center justify-center">
+      <div class="text-center">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
+          UNDER CONSTRUCTION
+        </h2>
+        <p class="text-sm md:text-base text-neutral-400 leading-relaxed">
+          This section is not ready yet.<br />
+          Something is forming in the dark.
+        </p>
+        <div class="text-xs text-red-900 tracking-wider uppercase">
+          Proceed with caution
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="flex gap-5 flex-1">
+      
+      <!-- Sidebar -->
+      <aside class="flex flex-col gap-2 w-fit">
+        <nav class="bg-[#3b3154] p-5 min-w-60 min-h-60">
+          <ul class="space-y-2">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Recs</a></li>
+            <li><a href="#">Guests</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Stuff</a></li>
+          </ul>
+        </nav>
+        
+        <!-- NowPlaying (React Island) -->
+        <div class="flex items-center justify-center">
+          <NowPlaying client:load />
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <div class="flex flex-col gap-5 flex-1">
+        <main class="flex-1">
+          <Bento />
+        </main>
+        
+        <div class="bg-[#3b3154] p-10 flex items-center justify-center">
+          Stamps
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</Layout>

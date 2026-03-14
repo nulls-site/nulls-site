@@ -1,0 +1,107 @@
+---
+import CheckboxList from './react/CheckboxList.tsx';
+import GithubCommitsWidget from './react/GithubCommitsWidget.tsx';
+---
+
+<div class="grid grid-cols-3 auto-rows-[160px] gap-2">
+  
+  <!-- Card grande -->
+  <div class="col-span-2 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
+    <div class="text-center">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
+        UNDER CONSTRUCTION
+      </h2>
+      <p class="text-sm md:text-base text-neutral-400 leading-relaxed">
+        This section is not ready yet.<br />
+        Something is forming in the dark.
+      </p>
+      <div class="text-xs text-red-900 tracking-wider uppercase">
+        Proceed with caution
+      </div>
+    </div>
+  </div>
+
+  <!-- Card pequeno -->
+  <div class="col-span-1 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
+    <div class="text-center">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
+        UNDER CONSTRUCTION
+      </h2>
+      <p class="text-sm md:text-base text-neutral-400 leading-relaxed">
+        This section is not ready yet.<br />
+        Something is forming in the dark.
+      </p>
+      <div class="text-xs text-red-900 tracking-wider uppercase">
+        Proceed with caution
+      </div>
+    </div>
+  </div>
+
+  <!-- Texto -->
+  <div class="col-span-1 row-span-2 bg-[#3b3154] flex items-center justify-center p-5">
+    <p class="text-sm leading-relaxed">
+      This is my personal space on the internet. Here, I express myself
+      freely, share the things I enjoy, and document ideas, projects, and
+      references that resonate with me. It is a place for experimentation,
+      reflection, and showcasing what captures my interest over time.
+    </p>
+  </div>
+
+  <!-- Outro card -->
+  <div class="col-span-2 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
+    <div class="text-center">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
+        UNDER CONSTRUCTION
+      </h2>
+      <p class="text-sm md:text-base text-neutral-400 leading-relaxed">
+        This section is not ready yet.<br />
+        Something is forming in the dark.
+      </p>
+      <div class="text-xs text-red-900 tracking-wider uppercase">
+        Proceed with caution
+      </div>
+    </div>
+  </div>
+
+  <!-- GitHub Widget (React Island) -->
+  <div class="col-span-1 row-span-1 bg-[#3b3154] flex items-center justify-center p-5">
+    <GithubCommitsWidget 
+      user="nulls-site" 
+      repo="nulls-site" 
+      branch="main" 
+      last={1} 
+      limitMessageTo={100} 
+      client:load 
+    />
+  </div>
+
+  <!-- Checkbox List (React Island) -->
+  <div class="col-span-1 row-span-2 bg-[#3b3154] flex items-center justify-center p-5 text-sm">
+    <CheckboxList 
+      items={[
+        { id: "1", label: "Be on a webring" },
+        { id: "2", label: "Share a project" },
+        { id: "3", label: "Write at least 5 posts" },
+        { id: "4", label: "Complete the website" },
+      ]} 
+      client:load 
+    />
+  </div>
+
+  <!-- Último card -->
+  <div class="col-span-2 row-span-1 bg-[#3b3154] flex items-center justify-center text-center p-5">
+    <div class="text-center">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-red-700 animate-pulse">
+        UNDER CONSTRUCTION
+      </h2>
+      <p class="text-sm md:text-base text-neutral-400 leading-relaxed">
+        This section is not ready yet.<br />
+        Something is forming in the dark.
+      </p>
+      <div class="text-xs text-red-900 tracking-wider uppercase">
+        Proceed with caution
+      </div>
+    </div>
+  </div>
+
+</div>
