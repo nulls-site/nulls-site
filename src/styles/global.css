@@ -3,62 +3,155 @@
 @import "tailwindcss/utilities";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --mandy-red: #8b0000;
+  --mandy-red-bright: #c41e3a;
+  --mandy-green: #2d5016;
+  --mandy-yellow: #d4a017;
+  --mandy-blue: #1a4d6e;
+  --mandy-purple: #3b3154;
+  --mandy-white: #f5f5f0;
+  --mandy-black: #0d0d0c;
+  
+  --background: var(--mandy-black);
+  --foreground: var(--mandy-white);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
 }
 
-@property --a {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
+@layer utilities {
+  .scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 1px,
+      rgba(0, 0, 0, 0.15) 1px,
+      rgba(0, 0, 0, 0.15) 2px
+    );
+    animation: scanline-move 8s linear infinite;
+  }
+
+  .glitch-flash {
+    background: rgba(196, 30, 58, 0.1);
+    animation: glitch-flash-random 30s steps(1) infinite;
+  }
+
+  .mandy-glitch {
+    position: relative;
+    display: inline-block;
+    animation: glitch-skew 3s infinite linear alternate-reverse;
+  }
+
+  .mandy-glitch::before,
+  .mandy-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.8;
+  }
+
+  .mandy-glitch::before {
+    color: var(--mandy-red-bright);
+    animation: glitch-offset-1 2s infinite linear alternate-reverse;
+    transform: translate(1px, 0);
+    z-index: 1;
+  }
+
+  .mandy-glitch::after {
+    color: var(--mandy-blue);
+    animation: glitch-offset-2 2.5s infinite linear alternate-reverse;
+    transform: translate(-1px, 0);
+    z-index: 1;
+  }
+
+  .mandy-glitch-intense {
+    position: relative;
+    display: inline-block;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+  }
+  .mandy-glitch-intense::before {
+    color: var(--mandy-red-bright);
+    animation: glitch-offset-1 0.5s infinite linear alternate-reverse;
+    transform: translate(2px, 0);
+    opacity: 1;
+  }
+
+  .mandy-glitch-intense::after {
+    color: var(--mandy-blue);
+    animation: glitch-offset-2 0.7s infinite linear alternate-reverse;
+    transform: translate(-2px, 0);
+    opacity: 1;
+  }
+
+  .mandy-glow-red {
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
+  }
+  .mandy-glow-blue {
+    box-shadow: 0 0 20px rgba(26, 77, 110, 0.6);
+  }
+  .mandy-flicker {
+    animation: mandy-flicker 4s infinite;
+  }
 }
 
-@keyframes spinGlowOnce {
-  from { --a: 0deg; }
-  to { --a: 1turn; }
+@keyframes scanline-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(2px); }
 }
 
-.now-playing-glow {
-  padding: 6px;
-  border-radius: 6px;
+@keyframes glitch-flash-random {
+  0%, 89%, 92%, 95%, 97%, 100% { opacity: 0; }
+  90%, 93%, 96%, 98% { opacity: 1; }
 }
 
-.animate-once {
-  background: repeating-conic-gradient(
-    from var(--a),
-    #2ef2b6ff,
-    #4fc3ffff,
-    #b39cfffd,
-    #2ef2b6ff
-  );
-  animation: spinGlowOnce 3s linear forwards;
-  filter: url(#glow-animated);
+@keyframes glitch-skew {
+  0%, 100% { transform: skew(0deg); }
+  10% { transform: skew(-0.3deg); }
+  30% { transform: skew(0.2deg); }
+  50% { transform: skew(0deg); }
+  70% { transform: skew(-0.2deg); }
+  90% { transform: skew(0.3deg); }
 }
 
-.now-playing-inner {
-  background: black;
-  border-radius: 4px;
-  padding: 8px;
+@keyframes glitch-offset-1 {
+  0%, 100% { transform: translate(1px, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, 2px); }
+  80% { transform: translate(1px, -2px); }
 }
 
-.carousel-slide {
-  min-width: 100%;
+@keyframes glitch-offset-2 {
+  0%, 100% { transform: translate(-1px, 0); }
+  20% { transform: translate(2px, -1px); }
+  40% { transform: translate(-2px, 1px); }
+  60% { transform: translate(1px, -2px); }
+  80% { transform: translate(-1px, 2px); }
+}
+
+@keyframes mandy-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanlines,
+  .glitch-flash,
+  .mandy-glitch,
+  .mandy-glitch-intense,
+  .mandy-flicker {
+    animation: none !important;
+  }
+  .mandy-glitch::before,
+  .mandy-glitch::after {
+    display: none;
+  }
 }
