@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Bento from '../components/Bento.astro';
 /* import NowPlaying from '../components/react/NowPlaying.tsx'; */
+import StampsScroll from '../components/StampsScroll.astro';
 ---
 
 <Layout title="Home | Meu Site">
@@ -46,8 +47,8 @@ import Bento from '../components/Bento.astro';
           <Bento />
         </main>
         
-        <div class="bg-[#3b3154] p-10 flex items-center justify-center">
-          Stamps
+        <div class="p-10 flex items-center justify-center">
+          <StampsScroll />
         </div>
       </div>
       

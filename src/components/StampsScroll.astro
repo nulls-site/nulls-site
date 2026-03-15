@@ -1,0 +1,75 @@
+---
+const stamps = [
+  { src: "/BaN.png", alt: "Stamp 1" },
+  { src: "/fcknzs.png", alt: "stamp 2" },
+  { src: "/frog.gif", alt: "Stamp 3" },
+  { src: "/horror.gif", alt: "Stamp 4" },
+  { src: "/lgbt.gif", alt: "Stamp 5" },
+  { src: "/polie.png", alt: "Stamp 6" },
+  { src: "/piracy.gif", alt: "stamp 7" },
+  { src: "/aiart.gif", alt: "stamp 8" },
+  { src: "/delete.gif", alt: "stamp 9" },
+];
+
+const loopStamps = [...stamps];
+---
+
+<div class="carousel">
+  <div class="track">
+    {
+      loopStamps.map((stamp) => (
+        <img src={stamp.src} alt={stamp.alt} loading="lazy" class="stamp" />
+      ))
+    }
+  </div>
+
+  <div class="track" aria-hidden>
+    {
+      loopStamps.map((stamp) => (
+        <img src={stamp.src} alt={stamp.alt} loading="lazy" class="stamp" />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .carousel {
+    margin: 0 auto;
+    display: flex;
+    width: 90%;
+    overflow: hidden;
+    user-select: none;
+
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 2%,
+      black 98%,
+      transparent
+    );
+  }
+
+  .track {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding-right: 1em;
+    flex-shrink: 0;
+
+    animation: scroll-left 10s linear infinite;
+  }
+
+  .stamp {
+    flex: 0 0 auto;
+    display: block;
+  }
+
+  @keyframes scroll-left {
+    from {
+      translate: 0;
+    }
+    to {
+      translate: -100%;
+    }
+  }
+</style>
