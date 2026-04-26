@@ -1,187 +1,152 @@
 ---
-// src/pages/about.astro
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Investigator Sheet | Meu Site">
-  <!-- Fundo principal usa variável CSS do tema -->
-  <div class="min-h-screen px-4 md:px-10 py-10 bg-[var(--background)]">
-    
-    <!-- Container principal -->
-    <div class="max-w-6xl mx-auto bg-mandy-purple/10 dark:bg-mandy-purple/20 border-4 border-mandy-purple rounded-lg p-6 shadow-2xl">
+<Layout title="Investigator Sheet | null's site">
+  <div class="min-h-screen px-4 md:px-10 py-6 bg-[var(--theme-bg)]">
 
-      <!-- Grid principal -->
+    <!-- Chapter title card -->
+    <div class="chapter-card mb-4">
+      <span class="chapter-number">∴ &nbsp; Chapter II &nbsp; ∴</span>
+      <span class="chapter-title">Children of the New Dawn</span>
+      <div class="chapter-rule">⸸</div>
+    </div>
+
+    <!-- Main container -->
+    <div
+      class="max-w-6xl mx-auto border-4 rounded-lg p-6 shadow-2xl"
+      style="background: var(--theme-surface-muted); border-color: var(--theme-border);"
+    >
+
+      <!-- Top grid: photo + characteristics -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        
-        <!-- Foto e Info Básica -->
-        <div class="border-2 border-mandy-purple p-4 dark:bg-mandy-black">
-          <div class="aspect-square bg-mandy-white/50 dark:bg-mandy-black/50 rounded mb-3 flex items-center justify-center">
-            <!-- <img src="/about-me.jpg" alt="Investigator" class="w-full h-full object-cover rounded" /> -->
-            <span class="text-mandy-purple/60 text-sm">[Photo]</span>
+
+        <!-- Photo & basic info -->
+        <div class="border-2 p-4" style="border-color: var(--theme-border); background: var(--theme-surface);">
+          <div
+            class="aspect-square rounded mb-3 flex items-center justify-center"
+            style="background: var(--theme-surface-muted);"
+          >
+            <span class="text-sm" style="color: var(--theme-text-subtle);">[Photo]</span>
           </div>
           <div class="space-y-2 text-sm">
-            <p class="border-b border-mandy-purple/30 pb-1">
-              <strong class="text-mandy-purple dark:text-mandy-red-bright">Name:</strong> Null
+            <p class="border-b pb-1" style="border-color: var(--theme-border-muted);">
+              <strong style="color: var(--theme-accent-bright);">Name:</strong>
+              <span style="color: var(--theme-text);"> Null</span>
             </p>
-            <p class="border-b border-mandy-purple/30 pb-1">
-              <strong class="text-mandy-purple dark:text-mandy-red-bright">Occupation:</strong> Data Engineer Intern
+            <p class="border-b pb-1" style="border-color: var(--theme-border-muted);">
+              <strong style="color: var(--theme-accent-bright);">Occupation:</strong>
+              <span style="color: var(--theme-text);"> Data Engineer Intern</span>
             </p>
-            <p class="border-b border-mandy-purple/30 pb-1">
-              <strong class="text-mandy-purple dark:text-mandy-red-bright">Age:</strong> 23
+            <p class="border-b pb-1" style="border-color: var(--theme-border-muted);">
+              <strong style="color: var(--theme-accent-bright);">Age:</strong>
+              <span style="color: var(--theme-text);"> 23</span>
             </p>
-            <p class="border-b border-mandy-purple/30 pb-1">
-              <strong class="text-mandy-purple dark:text-mandy-red-bright">Birthplace:</strong> Brazil 🇧🇷
+            <p class="border-b pb-1" style="border-color: var(--theme-border-muted);">
+              <strong style="color: var(--theme-accent-bright);">Birthplace:</strong>
+              <span style="color: var(--theme-text);"> Brazil 🇧🇷</span>
             </p>
             <p>
-              <strong class="text-mandy-purple dark:text-mandy-red-bright">Status Ailment:</strong> ADHD & mixed disorder
+              <strong style="color: var(--theme-accent-bright);">Status Ailment:</strong>
+              <span style="color: var(--theme-text);"> ADHD &amp; mixed disorder</span>
             </p>
           </div>
         </div>
 
-        <!-- Características Principais -->
-        <div class="border-2 border-mandy-purple p-4 dark:bg-mandy-black md:col-span-2">
-          <h2 class="text-xl font-bold text-mandy-purple dark:text-mandy-red-bright mb-4 border-b-2 border-mandy-purple pb-2">
+        <!-- Characteristics -->
+        <div class="border-2 p-4 md:col-span-2" style="border-color: var(--theme-border); background: var(--theme-surface);">
+          <h2 class="text-xl font-bold mb-4 border-b-2 pb-2" style="color: var(--theme-accent-bright); border-color: var(--theme-border);">
             CHARACTERISTICS
           </h2>
-
-          <div class="grid grid-cols-3 gap-4">
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {Array.from({ length: 9 }).map(() => (
+              <div class="text-center">
+                <p class="text-xs mb-1" style="color: var(--theme-text-muted);"></p>
+                <div class="border-2 h-16 flex items-center justify-center text-2xl font-bold"
+                     style="border-color: var(--theme-border); background: var(--theme-bg); color: var(--theme-text);">
+                </div>
               </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-1"></p>
-              <div class="border-2 border-mandy-purple dark:bg-mandy-black h-16 flex items-center justify-center text-2xl font-bold text-mandy-purple dark:text-mandy-white">
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <!-- Status -->
+      <!-- Status bars -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div class="border-2 border-mandy-purple p-3 dark:bg-mandy-black text-center">
-          <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-2">HIT POINTS</p>
+        <div class="border-2 p-3 text-center" style="border-color: var(--theme-border); background: var(--theme-surface);">
+          <p class="text-xs mb-2" style="color: var(--theme-text-muted);">HIT POINTS</p>
           <div class="flex justify-center gap-2">
-            <div class="border border-mandy-purple px-3 py-1 text-sm text-mandy-purple dark:text-mandy-white">Current: 8</div>
-            <div class="border border-mandy-purple px-3 py-1 text-sm text-mandy-purple dark:text-mandy-white">Max: 12</div>
+            <div class="border px-3 py-1 text-sm" style="border-color: var(--theme-border); color: var(--theme-text);">Current: 8</div>
+            <div class="border px-3 py-1 text-sm" style="border-color: var(--theme-border); color: var(--theme-text);">Max: 12</div>
           </div>
         </div>
 
-        <div class="border-2 border-mandy-purple p-3 dark:bg-mandy-black text-center">
-          <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-2">SANITY</p>
+        <div class="border-2 p-3 text-center" style="border-color: var(--theme-border); background: var(--theme-surface);">
+          <p class="text-xs mb-2" style="color: var(--theme-text-muted);">SANITY</p>
           <div class="flex justify-center gap-2">
-            <div class="border border-mandy-purple px-3 py-1 text-sm text-mandy-red-bright">Current: 20</div>
-            <div class="border border-mandy-purple px-3 py-1 text-sm text-mandy-purple dark:text-mandy-white">Max: 70</div>
+            <div class="border px-3 py-1 text-sm" style="border-color: var(--theme-border); color: var(--theme-accent-bright);">Current: 20</div>
+            <div class="border px-3 py-1 text-sm" style="border-color: var(--theme-border); color: var(--theme-text);">Max: 70</div>
           </div>
         </div>
 
-        <div class="border-2 border-mandy-purple p-3 dark:bg-mandy-black text-center">
-          <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-2"></p>
-          <div class="border border-mandy-purple px-4 py-1 text-sm inline-block text-mandy-red dark:text-mandy-white">
-          </div>
+        <div class="border-2 p-3 text-center" style="border-color: var(--theme-border); background: var(--theme-surface);">
+          <p class="text-xs mb-2" style="color: var(--theme-text-muted);"></p>
+          <div class="border px-4 py-1 text-sm inline-block" style="border-color: var(--theme-border); color: var(--theme-text);"></div>
         </div>
 
-        <div class="border-2 border-mandy-purple p-3 dark:bg-mandy-black text-center">
-          <p class="text-xs text-mandy-purple/70 dark:text-mandy-white/60 mb-2"></p>
-          <div class="border border-mandy-purple px-4 py-1 text-sm inline-block text-mandy-red">
-          </div>
+        <div class="border-2 p-3 text-center" style="border-color: var(--theme-border); background: var(--theme-surface);">
+          <p class="text-xs mb-2" style="color: var(--theme-text-muted);"></p>
+          <div class="border px-4 py-1 text-sm inline-block" style="border-color: var(--theme-border); color: var(--theme-text);"></div>
         </div>
       </div>
 
       <!-- Skills -->
-      <div class="border-2 border-mandy-purple p-4 dark:bg-mandy-black mb-6">
-        <h2 class="text-xl font-bold text-mandy-purple dark:text-mandy-red-bright mb-4 border-b-2 border-mandy-purple pb-2">
-          SKILLS & INTERESTS
+      <div class="border-2 p-4 mb-6" style="border-color: var(--theme-border); background: var(--theme-surface);">
+        <h2 class="text-xl font-bold mb-4 border-b-2 pb-2" style="color: var(--theme-accent-bright); border-color: var(--theme-border);">
+          SKILLS &amp; INTERESTS
         </h2>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Professional Skills -->
+
           <div>
-            <h3 class="text-sm font-bold text-mandy-purple dark:text-mandy-red-bright mb-2">PROFESSIONAL</h3>
+            <h3 class="text-sm font-bold mb-2" style="color: var(--theme-accent-bright);">PROFESSIONAL</h3>
             <div class="space-y-2">
-              <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white">Data Engineering</span>
-                <span class="text-sm font-bold text-mandy-yellow">40%</span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);">Data Engineering</span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);">40%</span>
               </div>
-              <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white">Computer Science</span>
-                <span class="text-sm font-bold text-mandy-yellow">70%</span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);">Computer Science</span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);">70%</span>
               </div>
-              <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white">Electronics</span>
-                <span class="text-sm font-bold text-mandy-yellow">10%</span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);">Electronics</span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);">10%</span>
               </div>
-              <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white">Product Design</span>
-                <span class="text-sm font-bold text-mandy-yellow">1%</span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);">Product Design</span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);">1%</span>
               </div>
             </div>
           </div>
 
-          <!-- Personal Skills -->
           <div>
-            <h3 class="text-sm font-bold text-mandy-purple dark:text-mandy-red-bright mb-2">PERSONAL</h3>
+            <h3 class="text-sm font-bold mb-2" style="color: var(--theme-accent-bright);">PERSONAL</h3>
             <div class="space-y-2">
-              <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white">Mandarin (HSK02)</span>
-                <span class="text-sm font-bold text-mandy-yellow">40%</span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);">Mandarin (HSK02)</span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);">40%</span>
               </div>
-             <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white"></span>
-                <span class="text-sm font-bold text-mandy-green"></span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);"></span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);"></span>
               </div>
-              <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white"></span>
-                <span class="text-sm font-bold text-mandy-yellow"></span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);"></span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);"></span>
               </div>
-              <div class="flex justify-between items-center border-b border-mandy-purple/20 dark:border-mandy-white/10 pb-1">
-                <span class="text-sm text-mandy-purple dark:text-mandy-white"></span>
-                <span class="text-sm font-bold text-mandy-yellow"></span>
+              <div class="flex justify-between items-center border-b pb-1" style="border-color: var(--theme-border-muted);">
+                <span class="text-sm" style="color: var(--theme-text);"></span>
+                <span class="text-sm font-bold" style="color: var(--theme-highlight);"></span>
               </div>
             </div>
           </div>
@@ -189,41 +154,44 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <!-- Current Quest -->
-      <div class="border-2 border-mandy-purple p-4 dark:bg-mandy-black mb-6">
-        <h2 class="text-xl font-bold text-mandy-purple dark:text-mandy-red-bright mb-3 border-b-2 border-mandy-purple pb-2">
+      <div class="border-2 p-4 mb-6" style="border-color: var(--theme-border); background: var(--theme-surface);">
+        <h2 class="text-xl font-bold mb-3 border-b-2 pb-2" style="color: var(--theme-accent-bright); border-color: var(--theme-border);">
           CURRENT QUEST
         </h2>
-        <p class="text-sm text-mandy-purple dark:text-mandy-white/90 leading-relaxed">
-          Currently exploring quest <strong class="text-mandy-yellow">Obtain CS Degree</strong>.<br>
-          <span class="text-xs text-mandy-red-bright italic">Failing due to sanity loss.</span>
+        <p class="text-sm leading-relaxed" style="color: var(--theme-text);">
+          Currently exploring quest <strong style="color: var(--theme-highlight);">Obtain CS Degree</strong>.<br />
+          <span class="text-xs italic" style="color: var(--theme-accent-bright);">Failing due to sanity loss.</span>
         </p>
       </div>
 
       <!-- Backstory -->
-      <div class="border-2 border-mandy-purple p-4 dark:bg-mandy-black mb-6">
-        <h2 class="text-xl font-bold text-mandy-purple dark:text-mandy-red-bright mb-3 border-b-2 border-mandy-purple pb-2">
+      <div class="border-2 p-4 mb-6" style="border-color: var(--theme-border); background: var(--theme-surface);">
+        <h2 class="text-xl font-bold mb-3 border-b-2 pb-2" style="color: var(--theme-accent-bright); border-color: var(--theme-border);">
           BACKSTORY
         </h2>
-        <p class="text-sm text-mandy-purple dark:text-mandy-white/90 leading-relaxed mb-3">
-          This investigator rushed into building their digital realm 8 months ago, 
+        <p class="text-sm leading-relaxed" style="color: var(--theme-text);">
+          This investigator rushed into building their digital realm 8 months ago,
           only to abandon it in the depths of burnout.
-          <br><br>
+          <br /><br />
           Seeking a career path that combines creativity with technology.
         </p>
       </div>
 
-      <!-- Companions -->
-      <div class="border-2 border-mandy-purple p-4 dark:bg-mandy-black">
-        <h2 class="text-xl font-bold text-mandy-purple dark:text-mandy-red-bright mb-3 border-b-2 border-mandy-purple pb-2">
-        </h2>
-        <div class="flex flex-wrap gap-2">
-
-        </div>
+      <!-- Companions (empty) -->
+      <div class="border-2 p-4" style="border-color: var(--theme-border); background: var(--theme-surface);">
+        <h2 class="text-xl font-bold mb-3 border-b-2 pb-2" style="color: var(--theme-accent-bright); border-color: var(--theme-border);"></h2>
+        <div class="flex flex-wrap gap-2"></div>
       </div>
 
       <!-- Footer -->
-      <div class="mt-6 text-center border-t-4 border-mandy-purple pt-4">
-        <a href="/" class="inline-block px-6 py-2 bg-mandy-purple hover:bg-mandy-red-bright text-mandy-white text-sm font-semibold rounded transition-colors">
+      <div class="mt-6 text-center border-t-4 pt-4" style="border-color: var(--theme-border);">
+        <a
+          href="/"
+          class="inline-block px-6 py-2 text-sm font-semibold rounded transition-all duration-300"
+          style="background: var(--theme-surface); border: 1px solid var(--theme-border); color: var(--theme-text);"
+          onmouseover="this.style.background='var(--theme-accent-bright)'; this.style.color='var(--theme-bg)';"
+          onmouseout="this.style.background='var(--theme-surface)'; this.style.color='var(--theme-text)';"
+        >
           ← Return to Hub
         </a>
       </div>

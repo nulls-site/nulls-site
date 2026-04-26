@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<Layout title="Chronicles | null's site">
+  <div class="min-h-screen px-4 md:px-20 py-6 flex flex-col gap-5">
+
+    <!-- Chapter card -->
+    <div class="chapter-card">
+      <span class="chapter-number">∴ &nbsp; Chapter III &nbsp; ∴</span>
+      <span class="chapter-title">Chronicles</span>
+      <div class="chapter-rule">⸸</div>
+    </div>
+
+    <main id="main-content">
+      {posts.length === 0 ? (
+        <p class="text-center py-20 grimoire-label">No entries found in the archive.</p>
+      ) : (
+        <ol class="flex flex-col gap-0" aria-label="Blog posts">
+          {posts.map((post, i) => (
+            <li>
+              <article
+                class="grimoire-card"
+                style="background: var(--theme-surface); border: 1px solid var(--theme-border);"
+              >
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="flex flex-col md:flex-row md:items-center gap-3 p-5 group"
+                  aria-label={`Read: ${post.data.title}`}
+                >
+                  <!-- Entry number -->
+                  <span
+                    class="grimoire-label shrink-0 w-16 text-center"
+                    aria-hidden="true"
+                    style="font-size: 0.55rem; letter-spacing: 0.3em;"
+                  >
+                    No.&nbsp;{String(posts.length - i).padStart(3, '0')}
+                  </span>
+
+                  <!-- Divider line -->
+                  <span class="hidden md:block shrink-0 w-px h-10 self-center"
+                        style="background: var(--theme-border);" aria-hidden="true"></span>
+
+                  <!-- Content -->
+                  <div class="flex-1 min-w-0">
+                    <h2
+                      class="text-base font-bold uppercase tracking-wide leading-snug mb-1 transition-colors duration-200"
+                      style="font-family: var(--font-gothic); color: var(--theme-text);"
+                    >
+                      {post.data.title}
+                    </h2>
+                    <p class="text-xs leading-relaxed mb-2" style="color: var(--theme-text-muted);">
+                      {post.data.description}
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3">
+                      <time
+                        datetime={post.data.date.toISOString()}
+                        class="grimoire-label"
+                        style="font-size: 0.5rem;"
+                      >
+                        {formatDate(post.data.date)}
+                      </time>
+                      {post.data.tags.length > 0 && (
+                        <ul class="flex flex-wrap gap-1" aria-label="Tags">
+                          {post.data.tags.map(tag => (
+                            <li
+                              class="grimoire-label px-2 py-0.5"
+                              style="font-size: 0.45rem; border: 1px solid var(--theme-border-muted);"
+                            >
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+
+                  <!-- Arrow -->
+                  <span
+                    class="shrink-0 text-sm transition-colors duration-200 self-center"
+                    style="font-family: var(--font-gothic); color: var(--theme-text-subtle);"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </a>
+              </article>
+            </li>
+          ))}
+        </ol>
+      )}
+    </main>
+
+    <!-- Back -->
+    <div class="sigil-divider mt-4">⸸</div>
+    <div class="text-center">
+      <a
+        href="/"
+        class="grimoire-label inline-block px-5 py-2 transition-colors duration-200"
+        style="border: 1px solid var(--theme-border); font-size: 0.55rem;"
+        onmouseover="this.style.borderColor='var(--theme-accent-bright)'; this.style.color='var(--theme-accent-bright)'"
+        onmouseout="this.style.borderColor='var(--theme-border)'; this.style.color=''"
+      >
+        ← Return to Domain
+      </a>
+    </div>
+
+  </div>
+</Layout>

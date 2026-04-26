@@ -11,108 +11,103 @@ try {
     commits = await res.json();
   }
 } catch (err) {
-  console.error('Erro ao buscar commits:', err);
+  console.error('Error fetching commits:', err);
 }
 ---
 
-<div class="grid grid-cols-3 auto-rows-[160px] gap-2">
-  
-  <!-- Card grande -->
-  <div class="col-span-2 row-span-1 bg-mandy-purple flex items-center justify-center p-5 mandy-glow-red/20">
+<div class="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[160px] gap-2" style="border: 1px solid var(--theme-border);">
+
+  <!-- Large card -->
+  <div class="col-span-1 md:col-span-2 min-h-[120px] md:min-h-0 bg-[var(--theme-surface)] flex items-center justify-center p-5 grimoire-card glow">
     <div class="text-center">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-mandy-red-bright animate-pulse mandy-glitch" 
-          data-text="UNDER CONSTRUCTION">
+      <h2 class="text-xl md:text-2xl font-bold tracking-widest text-[var(--theme-accent-bright)]">
         UNDER CONSTRUCTION
       </h2>
-      <p class="text-sm md:text-base text-mandy-white/70 leading-relaxed">
+      <p class="text-sm leading-relaxed" style="color: var(--theme-text-muted);">
         This section is not ready yet.<br />
         Something is forming in the dark.
       </p>
-      <div class="text-xs text-mandy-red/90 tracking-wider uppercase mandy-flicker">
+      <div class="text-xs tracking-wider uppercase" style="color: var(--theme-accent);">
         Proceed with caution
       </div>
     </div>
   </div>
 
-  <!-- Card pequeno -->
-  <div class="col-span-1 row-span-1 bg-mandy-purple flex items-center justify-center p-5">
+  <!-- Small card -->
+  <div class="col-span-1 min-h-[120px] md:min-h-0 bg-[var(--theme-surface)] flex items-center justify-center p-5 grimoire-card">
     <div class="text-center">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-mandy-red-bright animate-pulse mandy-glitch" 
-          data-text="UNDER CONSTRUCTION">
+      <h2 class="text-xl md:text-2xl font-bold tracking-widest text-[var(--theme-accent-bright)]">
         UNDER CONSTRUCTION
       </h2>
-      <p class="text-sm md:text-base text-mandy-white/70 leading-relaxed">
+      <p class="text-sm leading-relaxed" style="color: var(--theme-text-muted);">
         This section is not ready yet.<br />
         Something is forming in the dark.
       </p>
-      <div class="text-xs text-mandy-red/90 tracking-wider uppercase mandy-flicker">
+      <div class="text-xs tracking-wider uppercase" style="color: var(--theme-accent);">
         Proceed with caution
       </div>
     </div>
   </div>
 
   <!-- Manifesto -->
-  <div class="col-span-1 row-span-2 bg-mandy-purple flex items-center justify-center p-5">
-    <p class="text-sm leading-relaxed text-mandy-white/90">
-      This is my personal space on the internet. Here, I express myself freely, 
-      share the things I enjoy, and document ideas, projects, and references that 
-      resonate with me. It is a place for experimentation, reflection, and 
-      showcasing what captures my interest over time. <br><br>
+  <div class="col-span-1 md:row-span-2 min-h-[120px] md:min-h-0 bg-[var(--theme-surface)] flex items-center justify-center p-5 grimoire-card">
+    <p class="text-sm leading-relaxed" style="color: var(--theme-text-muted);">
+      This is my personal space on the internet. Here, I express myself freely,
+      share the things I enjoy, and document ideas, projects, and references that
+      resonate with me. It is a place for experimentation, reflection, and
+      showcasing what captures my interest over time.
     </p>
   </div>
 
-  <!-- Card médio -->
-  <div class="col-span-2 row-span-1 bg-mandy-purple flex items-center justify-center p-5 mandy-glow-red/20">
+  <!-- Medium card -->
+  <div class="col-span-1 md:col-span-2 min-h-[120px] md:min-h-0 bg-[var(--theme-surface)] flex items-center justify-center p-5 grimoire-card glow">
     <div class="text-center">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-mandy-red-bright animate-pulse mandy-glitch" 
-          data-text="UNDER CONSTRUCTION">
+      <h2 class="text-xl md:text-2xl font-bold tracking-widest text-[var(--theme-accent-bright)]">
         UNDER CONSTRUCTION
       </h2>
-      <p class="text-sm md:text-base text-mandy-white/70 leading-relaxed">
+      <p class="text-sm leading-relaxed" style="color: var(--theme-text-muted);">
         This section is not ready yet.<br />
         Something is forming in the dark.
       </p>
-      <div class="text-xs text-mandy-red/90 tracking-wider uppercase mandy-flicker">
+      <div class="text-xs tracking-wider uppercase" style="color: var(--theme-accent);">
         Proceed with caution
       </div>
     </div>
   </div>
 
   <!-- GitHub Widget -->
-  <div class="col-span-1 row-span-1 bg-mandy-purple flex items-center justify-center p-5">
-    <GithubCommitsWidget 
-      commits={commits} 
-      limitMessageTo={100} 
-      client:load 
+  <div class="col-span-1 min-h-[120px] md:min-h-0 bg-[var(--theme-surface)] flex items-center justify-center p-5 grimoire-card">
+    <GithubCommitsWidget
+      commits={commits}
+      limitMessageTo={100}
+      client:load
     />
   </div>
 
   <!-- Checkbox List -->
-  <div class="col-span-1 row-span-2 bg-mandy-purple flex items-center justify-center p-5 text-sm">
-    <CheckboxList 
+  <div class="col-span-1 md:row-span-2 min-h-[120px] md:min-h-0 bg-[var(--theme-surface)] flex items-center justify-center p-5 grimoire-card text-sm">
+    <CheckboxList
       items={[
         { id: "1", label: "Be on a webring" },
         { id: "2", label: "Share a project" },
         { id: "3", label: "Write at least 5 posts" },
         { id: "4", label: "Complete the website" },
-      ]} 
-      client:load 
+      ]}
+      client:load
     />
   </div>
 
-  <!-- Último card -->
-  <div class="col-span-2 row-span-1 bg-mandy-purple flex items-center justify-center text-center p-5">
+  <!-- Last card -->
+  <div class="col-span-1 md:col-span-2 min-h-[120px] md:min-h-0 bg-[var(--theme-surface)] flex items-center justify-center text-center p-5 grimoire-card">
     <div class="text-center">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-mandy-red-bright animate-pulse mandy-glitch" 
-
-          data-text="UNDER CONSTRUCTION">
+      <h2 class="text-xl md:text-2xl font-bold tracking-widest text-[var(--theme-accent-bright)]">
         UNDER CONSTRUCTION
       </h2>
-      <p class="text-sm md:text-base text-mandy-white/70 leading-relaxed">
+      <p class="text-sm leading-relaxed" style="color: var(--theme-text-muted);">
         This section is not ready yet.<br />
         Something is forming in the dark.
       </p>
-      <div class="text-xs text-mandy-red/90 tracking-wider uppercase mandy-flicker">
+      <div class="text-xs tracking-wider uppercase" style="color: var(--theme-accent);">
         Proceed with caution
       </div>
     </div>

@@ -6,14 +6,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'mandy-red': '#8b0000',
-        'mandy-red-bright': '#c41e3a',
-        'mandy-green': '#2d5016',
-        'mandy-yellow': '#d4a017',
-        'mandy-blue': '#1a4d6e',
-        'mandy-purple': '#3b3154',
-        'mandy-white': '#f5f5f0',
-        'mandy-black': '#0d0d0c',
+        // Semantic theme-aware colors backed by CSS custom properties
+        'theme-bg':           'var(--theme-bg)',
+        'theme-surface':      'var(--theme-surface)',
+        'theme-border':       'var(--theme-border)',
+        'theme-accent':       'var(--theme-accent)',
+        'theme-accent-bright':'var(--theme-accent-bright)',
+        'theme-text':         'var(--theme-text)',
+        'theme-highlight':    'var(--theme-highlight)',
       },
     },
   },

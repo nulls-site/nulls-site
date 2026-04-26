@@ -1,0 +1,55 @@
+---
+// Cycles through the 4 horror themes on click, persists to localStorage
+---
+
+<div class="fixed bottom-5 right-5 z-[60] font-mono">
+  <button
+    id="theme-toggle"
+    aria-label="Toggle theme"
+    title="Change theme"
+    style="
+      background: var(--theme-surface);
+      border: 1px solid var(--theme-border);
+      color: var(--theme-text);
+      box-shadow: 0 0 12px var(--theme-glow);
+    "
+    class="flex items-center gap-2 px-3 py-2 text-xs uppercase tracking-widest transition-all duration-300 hover:brightness-125 max-w-[calc(100vw-2.5rem)]"
+  >
+    <span id="theme-icon" aria-hidden="true" class="text-base leading-none">🔴</span>
+    <span id="theme-label">Mandy</span>
+  </button>
+</div>
+
+<script>
+  const THEMES = ['mandy', 'void', 'rot'] as const;
+  type Theme = typeof THEMES[number];
+
+  const META: Record<Theme, { icon: string; label: string }> = {
+    mandy: { icon: '', label: 'Mandy'           },
+    void:  { icon: '', label: 'They Will Kill You' },
+    rot:   { icon: '', label: 'Evil Dead'        },
+  };
+
+  function getStored(): Theme {
+    const v = localStorage.getItem('theme') as Theme | null;
+    return v && (THEMES as readonly string[]).includes(v) ? v : 'mandy';
+  }
+
+  function applyTheme(theme: Theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    const icon  = document.getElementById('theme-icon');
+    const label = document.getElementById('theme-label');
+    if (icon)  icon.textContent  = META[theme].icon;
+    if (label) label.textContent = META[theme].label;
+  }
+
+  function cycle() {
+    const cur  = getStored();
+    const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
+    applyTheme(next);
+  }
+
+  applyTheme(getStored());
+  document.getElementById('theme-toggle')?.addEventListener('click', cycle);
+</script>

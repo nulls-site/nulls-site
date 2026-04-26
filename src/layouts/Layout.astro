@@ -1,47 +1,71 @@
 ---
 import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 interface Props {
   title?: string;
 }
 
-const { title = "Meu Site" } = Astro.props;
+const { title = "null's site" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
 
+    <script is:inline>
+      (function () {
+        var valid = ['mandy', 'void', 'rot', 'grave'];
+        var stored = localStorage.getItem('theme');
+        var theme = valid.indexOf(stored) !== -1 ? stored : 'mandy';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;700&family=Geist+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Geist:wght@400;700&family=Geist+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
 
-  <body class="bg-[var(--background)] text-[var(--foreground)] font-sans antialiased">
-    
-    <div class="scanlines pointer-events-none fixed inset-0 z-50 opacity-[0.03]" aria-hidden="true"></div>
-    <div class="glitch-flash pointer-events-none fixed inset-0 z-40 opacity-0" aria-hidden="true"></div>
-    
+  <body class="bg-[var(--theme-bg)] text-[var(--theme-text)] antialiased">
+
+    <!-- Skip to main content (keyboard / screen reader) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- VHS / CRT layers -->
+    <div class="vhs-vignette pointer-events-none fixed inset-0 z-[41]" aria-hidden="true"></div>
+    <div class="vhs-noise    pointer-events-none fixed inset-0 z-[42]" aria-hidden="true"></div>
+    <div class="vhs-tracking pointer-events-none fixed inset-0 z-[43]" aria-hidden="true"></div>
+
+    <!-- Top sigil strip -->
+    <div class="sigil-strip" aria-hidden="true">
+      ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸
+    </div>
+
     <slot />
+
+    <!-- Bottom sigil strip -->
+    <div class="sigil-strip" aria-hidden="true">
+      ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴ &thinsp; ⸸ &thinsp; ∴
+    </div>
+
+    <ThemeToggle />
   </body>
 </html>
 
 <style is:global>
   :root {
-    --font-geist-sans: "Geist", system-ui, sans-serif;
-    --font-geist-mono: "Geist Mono", monospace;
+    --font-geist-sans:  "Geist", system-ui, sans-serif;
+    --font-geist-mono:  "Geist Mono", monospace;
+    --font-display:     "Cinzel Decorative", serif;
+    --font-gothic:      "Cinzel", serif;
   }
-  body {
-    font-family: var(--font-geist-sans);
-  }
-  code,
-  .font-mono {
-    font-family: var(--font-geist-mono);
-  }
+  body        { font-family: var(--font-geist-sans); }
+  code, .font-mono { font-family: var(--font-geist-mono); }
 </style>

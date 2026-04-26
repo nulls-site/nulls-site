@@ -2,156 +2,532 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-:root {
-  --mandy-red: #8b0000;
-  --mandy-red-bright: #c41e3a;
-  --mandy-green: #2d5016;
-  --mandy-yellow: #d4a017;
-  --mandy-blue: #1a4d6e;
-  --mandy-purple: #3b3154;
-  --mandy-white: #f5f5f0;
-  --mandy-black: #0d0d0c;
-  
-  --background: var(--mandy-black);
-  --foreground: var(--mandy-white);
+/* ─── Theme Definitions ──────────────────────────────────────────────────── */
+
+/*
+ * mandy — based on the 2018 film Mandy (dir. Panos Cosmatos)
+ * palette: deep purple-black, electric pink-red,
+ *          cold blue, amber gold
+ */
+:root,
+[data-theme="mandy"] {
+  --theme-bg:              #08050f;
+  --theme-surface:         #130a1f;
+  --theme-surface-muted:   rgba(19, 10, 31, 0.15);
+  --theme-surface-alpha:   rgba(19, 10, 31, 0.5);
+  --theme-border:          #3d102e;
+  --theme-border-muted:    rgba(61, 16, 46, 0.35);
+  --theme-accent:          #9e1042;
+  --theme-accent-bright:   #e8244e;
+  --theme-text:            #f0ddd5;
+  --theme-text-muted:      rgba(240, 221, 213, 0.65);
+  --theme-text-subtle:     rgba(240, 221, 213, 0.4);
+  --theme-highlight:       #e8a020;
+  --theme-glitch-1:        #e8244e;
+  --theme-glitch-2:        #2060d0;
+  --theme-glow:            rgba(232, 36, 78, 0.65);
+  --background:            var(--theme-bg);
+  --foreground:            var(--theme-text);
 }
+
+[data-theme="void"] {
+  /*
+   * based on "They Will Kill You"
+   * palette: surveillance-black night, cold forensic white, warning red,
+   *          found-footage blue, the sterile glow of a camera flash
+   */
+  --theme-bg:              #030508;
+  --theme-surface:         #070c14;
+  --theme-surface-muted:   rgba(7, 12, 20, 0.15);
+  --theme-surface-alpha:   rgba(7, 12, 20, 0.5);
+  --theme-border:          #0f1f30;
+  --theme-border-muted:    rgba(15, 31, 48, 0.35);
+  --theme-accent:          #6b1020;
+  --theme-accent-bright:   #e01e2a;
+  --theme-text:            #e5eaf0;
+  --theme-text-muted:      rgba(229, 234, 240, 0.65);
+  --theme-text-subtle:     rgba(229, 234, 240, 0.4);
+  --theme-highlight:       #00aacc;
+  --theme-glitch-1:        #e01e2a;
+  --theme-glitch-2:        #0055aa;
+  --theme-glow:            rgba(224, 30, 42, 0.6);
+  --background:            var(--theme-bg);
+  --foreground:            var(--theme-text);
+}
+
+[data-theme="rot"] {
+  /*
+   * based on Evil Dead (dir. Sam Raimi, 1981)
+   * palette: black forest rot, Necronomicon parchment, dried blood,
+   *          deadite possession green, bark and decay
+   */
+  --theme-bg:              #060301;
+  --theme-surface:         #0f0804;
+  --theme-surface-muted:   rgba(15, 8, 4, 0.15);
+  --theme-surface-alpha:   rgba(15, 8, 4, 0.5);
+  --theme-border:          #2e1205;
+  --theme-border-muted:    rgba(46, 18, 5, 0.35);
+  --theme-accent:          #6e1a05;
+  --theme-accent-bright:   #cc3300;
+  --theme-text:            #f0e5c8;
+  --theme-text-muted:      rgba(240, 229, 200, 0.65);
+  --theme-text-subtle:     rgba(240, 229, 200, 0.4);
+  --theme-highlight:       #5aaa14;
+  --theme-glitch-1:        #cc1a00;
+  --theme-glitch-2:        #2a8800;
+  --theme-glow:            rgba(110, 26, 5, 0.6);
+  --background:            var(--theme-bg);
+  --foreground:            var(--theme-text);
+}
+
+/* Top/bottom sigil strips — repeating symbol band */
+.sigil-strip {
+  width: 100%;
+  text-align: center;
+  padding: 4px 0;
+  font-family: "Cinzel", serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--theme-text-subtle);
+  border-top: 1px solid var(--theme-border-muted);
+  border-bottom: 1px solid var(--theme-border-muted);
+}
+
+/* Chapter title card — like Mandy's intertitles */
+.chapter-card {
+  text-align: center;
+  padding: 1rem 0 0.75rem;
+  position: relative;
+}
+.chapter-card .chapter-number {
+  font-family: "Cinzel", serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--theme-text-subtle);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.chapter-card .chapter-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--theme-text);
+  display: block;
+  line-height: 1.2;
+}
+.chapter-card .chapter-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+  color: var(--theme-text-subtle);
+  font-family: "Cinzel", serif;
+  font-size: 0.65rem;
+}
+.chapter-card .chapter-rule::before,
+.chapter-card .chapter-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--theme-border), transparent);
+}
+
+/* Grimoire-style section label (nav headers, widget titles) */
+.grimoire-label {
+  font-family: "Cinzel", serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--theme-text-subtle);
+}
+
+/* Double-border card treatment — aged grimoire page */
+.grimoire-card {
+  outline: 1px solid var(--theme-border-muted);
+  outline-offset: -4px;
+}
+
+/* Parental Advisory badge — Satanic Panic / PMRC era */
+.parental-advisory {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--theme-text-subtle);
+  padding: 0.35rem 0.5rem;
+}
+.parental-advisory .pa-icon {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--theme-text-subtle);
+  flex-shrink: 0;
+}
+.parental-advisory .pa-text-main {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--theme-text-subtle);
+  line-height: 1.3;
+  display: block;
+}
+.parental-advisory .pa-text-sub {
+  font-family: "Cinzel", serif;
+  font-size: 0.42rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--theme-text-subtle);
+  display: block;
+}
+
+/* Divider with symbols — between sections */
+.sigil-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Cinzel", serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--theme-text-subtle);
+  margin: 0.5rem 0;
+}
+.sigil-divider::before,
+.sigil-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--theme-border);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--theme-bg);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.2) 3px,
+    rgba(0, 0, 0, 0.2) 4px
+  );
+  color: var(--theme-text);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* ─── Utilities ──────────────────────────────────────────────────────────── */
+
 @layer utilities {
-  .scanlines {
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 1px,
-      rgba(0, 0, 0, 0.15) 1px,
-      rgba(0, 0, 0, 0.15) 2px
+  /* VHS static noise */
+  .vhs-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    mix-blend-mode: overlay;
+    opacity: 0.06;
+    animation: vhs-noise-pan 0.12s steps(2) infinite;
+  }
+
+  /* CRT vignette */
+  .vhs-vignette {
+    background: radial-gradient(
+      ellipse at 50% 50%,
+      transparent 52%,
+      rgba(0, 0, 0, 0.78) 100%
     );
-    animation: scanline-move 8s linear infinite;
   }
 
-  .glitch-flash {
-    background: rgba(196, 30, 58, 0.1);
-    animation: glitch-flash-random 30s steps(1) infinite;
+  /* VHS tracking error */
+  .vhs-tracking {
+    opacity: 0;
+    animation: vhs-tracking 14s steps(1) infinite;
   }
 
-  .mandy-glitch {
+  /* Glitch text */
+  .glitch-text {
     position: relative;
     display: inline-block;
     animation: glitch-skew 3s infinite linear alternate-reverse;
   }
 
-  .mandy-glitch::before,
-  .mandy-glitch::after {
+  .glitch-text::before,
+  .glitch-text::after {
     content: attr(data-text);
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     pointer-events: none;
     mix-blend-mode: screen;
     opacity: 0.8;
   }
 
-  .mandy-glitch::before {
-    color: var(--mandy-red-bright);
+  .glitch-text::before {
+    color: var(--theme-glitch-1);
     animation: glitch-offset-1 2s infinite linear alternate-reverse;
     transform: translate(1px, 0);
     z-index: 1;
   }
 
-  .mandy-glitch::after {
-    color: var(--mandy-blue);
+  .glitch-text::after {
+    color: var(--theme-glitch-2);
     animation: glitch-offset-2 2.5s infinite linear alternate-reverse;
     transform: translate(-1px, 0);
     z-index: 1;
   }
 
-  .mandy-glitch-intense {
+  .glitch-text-intense {
     position: relative;
     display: inline-block;
     animation: glitch-skew 1s infinite linear alternate-reverse;
   }
-  .mandy-glitch-intense::before {
-    color: var(--mandy-red-bright);
+  .glitch-text-intense::before {
+    color: var(--theme-glitch-1);
     animation: glitch-offset-1 0.5s infinite linear alternate-reverse;
     transform: translate(2px, 0);
     opacity: 1;
   }
-
-  .mandy-glitch-intense::after {
-    color: var(--mandy-blue);
+  .glitch-text-intense::after {
+    color: var(--theme-glitch-2);
     animation: glitch-offset-2 0.7s infinite linear alternate-reverse;
     transform: translate(-2px, 0);
     opacity: 1;
   }
 
-  .mandy-glow-red {
-    box-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
-  }
-  .mandy-glow-blue {
-    box-shadow: 0 0 20px rgba(26, 77, 110, 0.6);
-  }
-  .mandy-flicker {
-    animation: mandy-flicker 4s infinite;
-  }
+  .glow     { box-shadow: 0 0 20px var(--theme-glow); }
+  .flicker  { animation: flicker 4s infinite; }
 }
 
-@keyframes scanline-move {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(2px); }
+/* ─── Keyframes ──────────────────────────────────────────────────────────── */
+
+@keyframes vhs-noise-pan {
+  0%   { background-position:   0%   0%; }
+  25%  { background-position:  12%  18%; }
+  50%  { background-position:  -8%  33%; }
+  75%  { background-position:  22% -12%; }
+  100% { background-position:   0%   0%; }
 }
 
-@keyframes glitch-flash-random {
-  0%, 89%, 92%, 95%, 97%, 100% { opacity: 0; }
-  90%, 93%, 96%, 98% { opacity: 1; }
+@keyframes vhs-tracking {
+  0%, 87%, 100% { opacity: 0; }
+  88% {
+    opacity: 1;
+    background: linear-gradient(
+      to bottom,
+      transparent 65%,
+      rgba(255, 255, 255, 0.018) 65%,
+      rgba(255, 255, 255, 0.018) 67%,
+      transparent 67%
+    );
+    transform: translateX(-3px);
+  }
+  89% { opacity: 0; }
+  92% {
+    opacity: 1;
+    background: linear-gradient(
+      to bottom,
+      transparent 18%,
+      rgba(0, 0, 0, 0.14) 18%,
+      rgba(0, 0, 0, 0.14) 19%,
+      transparent 19%,
+      transparent 75%,
+      rgba(255, 255, 255, 0.025) 75%,
+      rgba(255, 255, 255, 0.025) 76%,
+      transparent 76%
+    );
+    transform: translateX(2px);
+  }
+  93% { opacity: 0; }
 }
 
 @keyframes glitch-skew {
   0%, 100% { transform: skew(0deg); }
-  10% { transform: skew(-0.3deg); }
-  30% { transform: skew(0.2deg); }
-  50% { transform: skew(0deg); }
-  70% { transform: skew(-0.2deg); }
-  90% { transform: skew(0.3deg); }
+  10%      { transform: skew(-0.3deg); }
+  30%      { transform: skew(0.2deg); }
+  50%      { transform: skew(0deg); }
+  70%      { transform: skew(-0.2deg); }
+  90%      { transform: skew(0.3deg); }
 }
 
 @keyframes glitch-offset-1 {
   0%, 100% { transform: translate(1px, 0); }
-  20% { transform: translate(-2px, 1px); }
-  40% { transform: translate(2px, -1px); }
-  60% { transform: translate(-1px, 2px); }
-  80% { transform: translate(1px, -2px); }
+  20%      { transform: translate(-2px, 1px); }
+  40%      { transform: translate(2px, -1px); }
+  60%      { transform: translate(-1px, 2px); }
+  80%      { transform: translate(1px, -2px); }
 }
 
 @keyframes glitch-offset-2 {
   0%, 100% { transform: translate(-1px, 0); }
-  20% { transform: translate(2px, -1px); }
-  40% { transform: translate(-2px, 1px); }
-  60% { transform: translate(1px, -2px); }
-  80% { transform: translate(-1px, 2px); }
+  20%      { transform: translate(2px, -1px); }
+  40%      { transform: translate(-2px, 1px); }
+  60%      { transform: translate(1px, -2px); }
+  80%      { transform: translate(-1px, 2px); }
 }
 
-@keyframes mandy-flicker {
+@keyframes flicker {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
+  50%      { opacity: 0.85; }
 }
+
+/* ─── Accessibility ──────────────────────────────────────────────────────── */
+
+/* Skip to main content link — visible on keyboard focus */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1.25rem;
+  background: var(--theme-accent-bright);
+  color: var(--theme-bg);
+  font-family: var(--font-gothic);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 0.75rem;
+  outline: 2px solid var(--theme-text);
+  outline-offset: 3px;
+}
+
+/* Keyboard focus indicator — theme-aware, visible on all elements */
+:focus-visible {
+  outline: 2px solid var(--theme-accent-bright);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Minimum readable body size and line height */
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Ensure interactive elements meet minimum tap target (44×44px) */
+a, button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+nav a, nav button {
+  min-height: 36px; /* relax inside nav where density is intentional */
+}
+
+/* Underline links inside prose — required for low-vision users */
+.prose a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .vhs-noise, .vhs-vignette, .vhs-tracking {
+    display: none;
+  }
+}
+
+/* ─── Blog Prose Styles ──────────────────────────────────────────────────── */
+
+.prose {
+  max-width: 70ch;
+  line-height: 1.8;
+  color: var(--theme-text-muted);
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-gothic);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--theme-text);
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+.prose h1 { font-size: 1.5rem;  }
+.prose h2 { font-size: 1.2rem; border-bottom: 1px solid var(--theme-border); padding-bottom: 0.35rem; }
+.prose h3 { font-size: 1.05rem; }
+.prose h4 { font-size: 0.9rem; }
+.prose p        { margin-bottom: 1.25rem; }
+.prose strong   { color: var(--theme-text); font-weight: 700; }
+.prose em       { font-style: italic; }
+.prose a {
+  color: var(--theme-accent-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.15s;
+}
+.prose a:hover  { opacity: 0.8; }
+.prose blockquote {
+  border-left: 2px solid var(--theme-accent);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--theme-text-muted);
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose li       { margin-bottom: 0.4rem; }
+.prose ul li    { list-style-type: '⸸ '; }
+.prose ol li    { list-style-type: decimal; }
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--theme-border);
+  margin: 2.5rem 0;
+}
+.prose code {
+  font-family: var(--font-geist-mono, monospace);
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  padding: 0.1em 0.4em;
+  font-size: 0.875em;
+  color: var(--theme-accent-bright);
+  border-radius: 2px;
+}
+.prose pre {
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+}
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--theme-border);
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .scanlines,
-  .glitch-flash,
-  .mandy-glitch,
-  .mandy-glitch-intense,
-  .mandy-flicker {
+  .vhs-noise,
+  .vhs-tracking,
+  .glitch-text,
+  .glitch-text-intense,
+  .flicker {
     animation: none !important;
   }
-  .mandy-glitch::before,
-  .mandy-glitch::after {
+  .glitch-text::before,
+  .glitch-text::after {
     display: none;
   }
 }
