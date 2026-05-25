@@ -19,7 +19,8 @@ function formatDate(date: Date) {
 ---
 
 <Layout title={`${post.data.title} | null's site`}>
-  <div class="min-h-screen px-4 md:px-20 py-6">
+  <div class="min-h-screen px-4 py-6">
+  <div class="max-w-3xl mx-auto">
 
     <!-- Back link -->
     <nav aria-label="Breadcrumb" class="mb-6">
@@ -76,10 +77,40 @@ function formatDate(date: Date) {
 
     <!-- Post body -->
     <main id="main-content">
-      <article class="prose max-w-3xl" aria-label={post.data.title}>
+      <article class="prose" aria-label={post.data.title}>
         <Content />
       </article>
     </main>
+
+    <!-- Comments -->
+    <section aria-label="Comments" class="mt-12 max-w-3xl">
+      <div class="sigil-divider mb-6">⸸ &nbsp; Remarks &nbsp; ⸸</div>
+      <div class="hcb-wrapper grimoire-card p-1" style="background: var(--theme-surface); border: 1px solid var(--theme-border);">
+        <div id="HCB_comment_box">
+          <a href="http://www.htmlcommentbox.com">Comment widget</a> is loading…
+        </div>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0"
+        />
+        <script type="text/javascript" id="hcb" is:inline>
+          if (!window.hcb_user) { hcb_user = {}; }
+          (function () {
+            var l = window.hcb_user.PAGE =
+              window.hcb_user.PAGE ||
+              window.location.href.replace(/[&?]hcb.*$/, '');
+            var h = document.createElement('script');
+            h.type = 'text/javascript';
+            h.src =
+              'https://www.htmlcommentbox.com/jread?page=' +
+              encodeURIComponent(l).replace('+', '%2B') +
+              '&mod=%241&skin=&collapsed=';
+            document.head.appendChild(h);
+          })();
+        </script>
+      </div>
+    </section>
 
     <!-- Footer nav -->
     <footer class="mt-16 pt-6" style="border-top: 1px solid var(--theme-border);">
@@ -106,5 +137,6 @@ function formatDate(date: Date) {
       </div>
     </footer>
 
+  </div>
   </div>
 </Layout>
